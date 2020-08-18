@@ -1,0 +1,24 @@
+{
+  "name": "cake-not-found",
+  "version": "0.0.1",
+  "description": "A game for js13k",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidScales/cake-not-found.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidScales/cake-not-found/issues"
+  },
+  "homepage": "https://github.com/DavidScales/cake-not-found#readme"
+}

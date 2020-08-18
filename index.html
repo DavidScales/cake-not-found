@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        ul {
+            padding-left: 0;
+        }
+        li {
+            list-style: none;
+            padding-left: 10px;
+        }
+    </style>
+    <title>CakeNotFound</title>
+  </head>
+  <body>
+      <h2>So many levels, where is CAKE?</h2>
+
+      <ul id="categories"></ul>
+
+    <script>
+    // first visit - redirect to cake
+    const visited = localStorage.getItem('namespaceHashReminder-visited')
+    if (!visited) {
+      const currentUrl = window.location.href;
+      const cakeUrl = currentUrl + 'cake/cake.html';
+      window.location.href = cakeUrl;
+    }
+    </script>
+
+    <script>
+        const categories = [
+            {
+                title: 'cake',
+                levels: [
+                    { name: 'cake', unlocked: true }
+                ]
+            },
+            {
+                title: 'forbidden',
+                levels: [
+                    { name: 'level1', unlocked: true },
+                    { name: 'level2', unlocked: false },
+                    { name: 'level3', unlocked: false }
+                ]
+            },
+            {
+                title: 'conflict',
+                levels: [
+                    { name: 'level1', unlocked: true },
+                    { name: 'level2', unlocked: false },
+                    { name: 'level3', unlocked: false }
+                ]
+            }
+        ];
+
+        const categoriesUl = document.querySelector('ul#categories');
+        let categoriesHtml = '';
+        categories.forEach(category => {
+            const levelLinks = category.levels.map(level => {
+                const text = `|--${level.name}`;
+                let href = "";
+                if (level.unlocked) {
+                    // don't show clickable links for locked levels
+                    // https://stackoverflow.com/questions/3984726/how-do-i-make-a-link-unclickable
+                    href = `href="/${category.title}/${level.name}.html"`;
+                }
+                return `<li><a ${href}>${text}</a></li>`;
+            }).join('');
+            categoriesHtml += `<ul>${category.title}/<br>${levelLinks}</ul>`;
+        });
+        categoriesUl.insertAdjacentHTML('beforeend', categoriesHtml);
+    </script>
+  </body>
+</html>
